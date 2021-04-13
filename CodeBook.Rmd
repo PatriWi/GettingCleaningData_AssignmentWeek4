@@ -1,0 +1,149 @@
+---
+title: CodeBook
+date: 13 4 2021
+
+---
+
+This CodeBook describes the tidy data set Tidy.txt which was created from the
+data set downloaded from
+https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip 
+by using the code run_analysis.R.
+It includes a description of the variables, the data and the transformation
+used to create the tidy data set.
+
+
+
+**Description of the data**
+
+The data set consists of 181 rows and 81 columns where the first row includes
+the variable names of each column.
+
+Each row contains 79 averaged measurements (of mean or standard deviation)
+for a given subject and an activity.
+The variables subject and activity are stored in the first two columns and form 
+the primary key. 
+
+
+**Describing the Transformation**
+The package dplyr was used to transform the data.
+
+The data was created by transforming the data from 
+https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
+using the test and train data sets
+- subject_test.txt, subjext_train.txt: containing the subjects (compare to column
+one of our cleaned data set)
+- X_test.txt, X_train.txt: containing the features
+- y_test.txt, y_train.txt: containing the activties
+- activity_labels.txt: includes the encoding of y_test and y_train
+- features.txt: including the column names of X_test and X_train
+
+Steps to create the tiny data set
+1. Download and unzip the raw data
+2. Merge the tiny and the test data for each type (activtiy, feature and subject)
+3. Use the column names stored in features.txt
+4. Merge the whole data together
+5. Select - except for subject and activtiy - only the columns that contain mean
+or std
+6. Replace the coded activity by its description stored in activtiy_labels.txt 
+7. Rename the columns so they can be understood intuitively 
+8. Create a tidy data set containing the average of each variable for each 
+subject and activtiy and store it
+            
+
+
+
+**Description of the variables**
+
+1: subject, int[1:180]
+   ranges from 1:30
+   describing the 30 volunteers within an age bracket of 19-48
+   
+2: activities, char[1:180]
+   contains of the strings: LAYING, STANDING, SITTING, WALKING_DOWNSTARIS,
+   WALKING_UPSTARS, WALKING
+   describing the aktivities that each of the subjects was doing
+   
+Each of the following variables is an averaged measurement (of mean or standard
+deviation), num[1:180], normalized and bounded within [-1,1]
+
+timeBodyaccelerometer-mean()-X
+timeBodyaccelerometer-mean()-Y                    
+timeBodyaccelerometer-mean()-Z                     
+timeBodyaccelerometer-std()-X                     
+timeBodyaccelerometer-std()-Y                      
+timeBodyaccelerometer-std()-Z                     
+timeGravityaccelerometer-mean()-X                  
+timeGravityaccelerometer-mean()-Y                 
+timeGravityaccelerometer-mean()-Z                  
+timeGravityaccelerometer-std()-X                  
+timeGravityaccelerometer-std()-Y                   
+timeGravityaccelerometer-std()-Z                  
+timeBodyaccelerometerJerk-mean()-X                 
+timeBodyaccelerometerJerk-mean()-Y                
+timeBodyaccelerometerJerk-mean()-Z                 
+timeBodyaccelerometerJerk-std()-X                 
+timeBodyaccelerometerJerk-std()-Y                  
+timeBodyaccelerometerJerk-std()-Z                 
+timeBodygyroscope-mean()-X                         
+timeBodygyroscope-mean()-Y                        
+timeBodygyroscope-mean()-Z                         
+timeBodygyroscope-std()-X                         
+timeBodygyroscope-std()-Y                          
+timeBodygyroscope-std()-Z                         
+timeBodygyroscopeJerk-mean()-X                     
+timeBodygyroscopeJerk-mean()-Y                    
+timeBodygyroscopeJerk-mean()-Z                     
+timeBodygyroscopeJerk-std()-X                      
+timeBodygyroscopeJerk-std()-Y                      
+timeBodygyroscopeJerk-std()-Z                     
+timeBodyaccelerometermagnitude-mean()              
+timeBodyaccelerometermagnitude-std()              
+timeGravityaccelerometermagnitude-mean()           
+timeGravityaccelerometermagnitude-std()           
+timeBodyaccelerometerJerkmagnitude-mean()          
+timeBodyaccelerometerJerkmagnitude-std()          
+timeBodygyroscopemagnitude-mean()                  
+timeBodygyroscopemagnitude-std()                   
+timeBodygyroscopeJerkmagnitude-mean()              
+timeBodygyroscopeJerkmagnitude-std()              
+frequencyBodyaccelerometer-mean()-X                
+frequencyBodyaccelerometer-mean()-Y               
+frequencyBodyaccelerometer-mean()-Z                
+frequencyBodyaccelerometer-std()-X                
+frequencyBodyaccelerometer-std()-Y                 
+frequencyBodyaccelerometer-std()-Z                 
+frequencyBodyaccelerometer-meanFreq()-X     
+frequencyBodyaccelerometer-meanFreq()-Y           
+frequencyBodyaccelerometer-meanFreq()-Z           
+frequencyBodyaccelerometerJerk-mean()-X           
+frequencyBodyaccelerometerJerk-mean()-Y            
+frequencyBodyaccelerometerJerk-mean()-Z           
+frequencyBodyaccelerometerJerk-std()-X             
+frequencyBodyaccelerometerJerk-std()-Y            
+frequencyBodyaccelerometerJerk-std()-Z             
+frequencyBodyaccelerometerJerk-meanFreq()-X       
+frequencyBodyaccelerometerJerk-meanFreq()-Y        
+frequencyBodyaccelerometerJerk-meanFreq()-Z       
+frequencyBodygyroscope-mean()-X                    
+frequencyBodygyroscope-mean()-Y                   
+frequencyBodygyroscope-mean()-Z                    
+frequencyBodygyroscope-std()-X                    
+frequencyBodygyroscope-std()-Y                     
+frequencyBodygyroscope-std()-Z                    
+frequencyBodygyroscope-meanFreq()-X                
+frequencyBodygyroscope-meanFreq()-Y               
+frequencyBodygyroscope-meanFreq()-Z                
+frequencyBodyaccelerometermagnitude-mean()        
+frequencyBodyaccelerometermagnitude-std()          
+frequencyBodyaccelerometermagnitude-meanFreq()    
+frequencybodyaccelerometerJerkmagnitude-mean()     
+frequencybodyaccelerometerJerkmagnitude-std()     
+frequencybodyaccelerometerJerkmagnitude-meanFreq() 
+frequencybodygyroscopemagnitude-mean()            
+frequencybodygyroscopemagnitude-std()              
+frequencybodygyroscopemagnitude-meanFreq()        
+frequencybodygyroscopeJerkmagnitude-mean()         
+frequencybodygyroscopeJerkmagnitude-std()         
+frequencybodygyroscopeJerkmagnitude-meanFreq() 
+
+
