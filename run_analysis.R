@@ -5,6 +5,7 @@ library(dplyr)
 
 
 #download and unzip
+{
 url <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
 
 temp <- tempfile()
@@ -14,10 +15,13 @@ download.file(url, temp)
 unzip(zipfile = temp, exdir = temp2)
 
 #load column names
+
 feature_names <- read.table(file.path(temp2, "UCI HAR Dataset/features.txt")) 
 activity_names <- read.table(file.path(temp2, "UCI HAR Dataset/activity_labels.txt"), col.names = c("activity", "activity_descr"))
 
-#load test data set
+
+
+#load test and train data set
 subject_test <- read.table(file.path(temp2, "UCI HAR Dataset/test/subject_test.txt"))
 features_test <- read.table(file.path(temp2, "UCI HAR Dataset/test/X_test.txt"))
 activity_test <- read.table(file.path(temp2, "UCI HAR Dataset/test/y_test.txt"))
@@ -28,7 +32,7 @@ features_train <- read.table(file.path(temp2, "UCI HAR Dataset/train/X_train.txt
 activity_train <- read.table(file.path(temp2, "UCI HAR Dataset/train/y_train.txt"))
 
 unlink(c(temp, temp2))
-
+}
 
 
 #bind train and test data
@@ -47,7 +51,7 @@ data_all <- cbind(subject, activity, features)
 
 
 #filter columns with std or mean
-data_filtered <- cbind(subject, activity, data_all[,grepl("[Mm]ean|[Ss]td", colnames(data_all))])
+data_filtered <- cbind(subject, activity, data_all[,grepl("mean|std", colnames(data_all))])
 
 
 #join the description of the activities
